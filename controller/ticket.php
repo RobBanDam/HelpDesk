@@ -5,7 +5,11 @@
 
     switch($_GET["op"]){
         case "insert":
-            $ticket->insert_ticket($_POST["usuid"], $_POST["catid"], $_POST["ticktitulo"], $_POST["tickdesc"]);
+            // Aplica htmlspecialchars al campo tickdesc
+            $tickdesc = htmlspecialchars($_POST["tickdesc"]);
+
+            // Llama a la función insert_ticket con el campo tickdesc modificado
+            $ticket->insert_ticket($_POST["usuid"], $_POST["catid"], $_POST["ticktitulo"], $tickdesc);
             
         break;
 

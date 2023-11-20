@@ -19,10 +19,10 @@ $(document).ready(function(){
                     'pdfHtml5'
                     ],
             "ajax":{
-                url: '../../controller/ticket.php?op=listar',
+                url: '../../controller/ticket.php?op=listar_x_usu',
                 type : "post",
                 dataType : "json",  
-                data:{ usu_id : 1 },                        
+                data:{ usuid : 1 },                        
                 error: function(e){
                     console.log(e.responseText);    
                 }
