@@ -6,7 +6,22 @@ function init(){
 
 $(document).ready(function() {
     $('#tickdesc').summernote({
-        height: 100
+        height: 100,
+        lang: "es-ES",
+        popover: {
+            image: [],
+            link: [],
+            air: []
+        },
+        callbacks: {
+            onImageUpload: function(image){
+                console.log("Image detect...");
+                myimagetreat(image[0]);
+            },
+            onPaste: function(e){
+                console.log("Text detect...");
+            }
+        }
     });
 
     $.post("../../controller/categoria.php?op=combo", function(data, status){
