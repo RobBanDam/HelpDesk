@@ -8,6 +8,25 @@ $(document).ready(function(){
     $.post("../../controller/ticket.php?op=listardetalle", {tickid : tickid}, function(data){
         $('#lbldetalle').html(data);
     });
+
+    $('#tickid_desc').summernote({
+        height: 100,
+        lang: "es-ES",
+        popover: {
+            image: [],
+            link: [],
+            air: []
+        },
+        callbacks: {
+            onImageUpload: function(image){
+                console.log("Image detect...");
+                myimagetreat(image[0]);
+            },
+            onPaste: function(e){
+                console.log("Text detect...");
+            }
+        }
+    });
 });
 
 let getUrlParameter = function getUrlParameter(sParam){
