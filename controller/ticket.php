@@ -34,7 +34,7 @@
                 if ($row["tickest"] == "Abierto") {
                     $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
                 } else {
-                    $sub_array[] = '<span class="label label-pill label-warning">Cerrado</span>';
+                    $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
                 }
 
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fechcrea"]));
