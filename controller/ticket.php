@@ -6,10 +6,19 @@
     switch ($_GET["op"]) {
         case "insert":
             // Aplica htmlspecialchars al campo tickdesc
-            $tickdesc = htmlspecialchars($_POST["tickdesc"]);
-
+            /* $tickdesc = htmlspecialchars($_POST["tickdesc"]); */
+            
             // Llama a la función insert_ticket con el campo tickdesc modificado
-            $ticket->insert_ticket($_POST["usuid"], $_POST["catid"], $_POST["ticktitulo"], $tickdesc);
+            $ticket->insert_ticket($_POST["usuid"], $_POST["catid"], $_POST["ticktitulo"], $_POST["tickdesc"]);
+        break;
+
+        case "update":
+            // Aplica htmlspecialchars al campo tickdesc
+            /* $tickdesc = htmlspecialchars($_POST["tickdesc"]); */
+            
+            // Llama a la función insert_ticket con el campo tickdesc modificado
+            $ticket->update_ticket($_POST["tickid"]);
+            $ticket->insert_ticketdetalle_cerrar($_POST["tickid"], $_POST["usuid"]);
 
         break;
 
@@ -58,7 +67,7 @@
                 if ($row["tickest"] == "Abierto") {
                     $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
                 } else {
-                    $sub_array[] = '<span class="label label-pill label-warning">Cerrado</span>';
+                    $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
                 }
 
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fechcrea"]));
@@ -93,7 +102,7 @@
                                     <div class="activity-line-item-user">
                                         <div class="activity-line-item-user-photo">
                                             <a href="#">
-                                                <img src="../../public/img/photo-64-2.jpg" alt="">
+                                                <img src="../../public/<?php echo $row["rolid"]?>.jpg" alt="avatar de usuario">
                                             </a>
                                         </div>
                                         <div class="activity-line-item-user-name"> <?php echo $row['usunom']. ' '.$row['usuape']; ?> </div>
@@ -125,6 +134,43 @@
                     }
                 ?>
             <?php
+        break;
+
+        case "mostrar":
+            $datos=$ticket->listar_ticket_x_id($_POST["tickid"]);
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["tickid"] = $row["tickid"];
+                    $output["usuid"] = $row["usuid"];
+                    $output["catid"] = $row["catid"];
+                    $output["ticktitulo"] = $row["ticktitulo"];
+                    $output["tickdesc"] = $row["tickdesc"];
+
+                    if($row["tickest"] == "Abierto"){
+                        $output["tickest"] = '<span class="label label-pill label-success">Abierto</span>';
+                    }else{
+                        $output["tickest"] = '<span class="label label-pill label-danger">Cerrado</span>';
+                    }
+
+                    $output["tickest_txt"] = $row["tickest"];
+
+                    $output["fechcrea"] = date("d/m/Y H:i:s", strtotime($row["fechcrea"]));
+                    $output["usunom"] = $row["usunom"];
+                    $output["usuape"] = $row["usuape"];
+                    $output["catnom"] = $row["catnom"];
+                }
+                echo json_encode($output);
+            }
+        break;
+
+        case "insertdetalle":
+            // Aplica htmlspecialchars al campo tickdesc
+            /* $tickdesc = htmlspecialchars($_POST["tickdesc"]); */
+
+            // Llama a la función insert_ticketdetalle con el campo tickdesc modificado
+            $ticket->insert_ticketdetalle($_POST["tickid"], $_POST["usuid"], $_POST["tickid_desc"]);
+
         break;
     }
 ?>

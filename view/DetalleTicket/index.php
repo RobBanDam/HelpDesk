@@ -22,10 +22,10 @@
                     <div class="tbl">
                         <div class="tbl-row">
                             <div class="tbl-cell">
-                                <h3>Detalle Ticket - 1</h3>
-                                <span class="label label-pill label-danger">Cerrado</span>
-                                <span class="label label-pill label-primary">Nombre del Usuario</span>
-                                <span class="label label-pill label-default">99/99/9999</span>
+                                <h3 id="lblnomidtick"></h3>
+                                <span id="lblestado"></span>
+                                <span class="label label-pill label-primary" id="lblnomusuario"></span>
+                                <span class="label label-pill label-default" id="lblfechcrea"></span>
                                 <ol class="breadcrumb breadcrumb-simple">
                                     <li><a href="../Home/index.php">Home</a></li>
                                     <li class="active">Detalle Ticket</li>
@@ -51,8 +51,10 @@
                         </div>
                         <div class="col-lg-12">
                             <fieldset class="form-group">
-                                <label class="form-label semibold" for="tickdesc">Descripción</label>
-                                <input type="text" class="form-control" id="tickdesc" name="tickdesc">
+                                <label class="form-label semibold" for="tickid_descusu">Descripción</label>
+                                <div class="summernote-theme-1">
+                                    <textarea id="tickid_descusu" class="summernote" name="tickid_descusu"></textarea>
+                                </div>
                             </fieldset>
                         </div>
                     </div>
@@ -61,7 +63,7 @@
                 <section class="activity-line" id="lbldetalle">
                 </section><!--.activity-line-->
 
-                <div class="box-typical box-typical-padding">
+                <div class="box-typical box-typical-padding" id="pnldetalle">
                     <p>Por favor, ingrese su comentario:</p>
                     <div class="row">
                         <div class="col-lg-12">
@@ -73,8 +75,8 @@
                             </fieldset>
                         </div>
                         <div class="col-lg-12">
-                            <button type="submit" name="action" value="add" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
-                            <button type="submit" name="action" value="add" class="btn btn-rounded btn-inline btn-danger">Cerrar Ticket</button>
+                            <button type="button" id="btnenviar" class="btn btn-rounded btn-inline btn-primary">Enviar</button>
+                            <button type="button" id="btncerrar" class="btn btn-rounded btn-inline btn-danger">Cerrar Ticket</button>
                         </div>
                     </div>
                 </div>

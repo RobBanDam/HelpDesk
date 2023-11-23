@@ -6,7 +6,7 @@ function init(){
 
 $(document).ready(function() {
     $('#tickdesc').summernote({
-        height: 100,
+        height: 250,
         lang: "es-ES",
         popover: {
             image: [],
@@ -32,18 +32,23 @@ $(document).ready(function() {
 function guardaryeditar(e){
     e.preventDefault();
     let formData = new FormData($("#ticket_form")[0]);
-    $.ajax({
-        url: "../../controller/ticket.php?op=insert",
-        type: "POST",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(datos){
-            $('#ticktitulo').val('');
-            $('#tickdesc').summernote('reset');
-            swal("¡Correcto!", "Registrado Correctamente", "success");
-        }
-    });
+
+    if($('#tickdesc').summernote('isEmpty') || $('#ticktitulo').val() == ''){
+        swal("Advertencia", "Faltan llenar los campos", "warning");
+    }else{
+        $.ajax({
+            url: "../../controller/ticket.php?op=insert",
+            type: "POST",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(datos){
+                $('#ticktitulo').val('');
+                $('#tickdesc').summernote('reset');
+                swal("¡Correcto!", "Registrado Correctamente", "success");
+            }
+        });
+    }
 }
 
 init();
