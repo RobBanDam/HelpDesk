@@ -77,7 +77,7 @@
         public function delete_usuario($usuid){
             $conectar = parent::conexion();
             parent::set_names();
-            $sql = "UPDATE tm_usuario SET est = '0' WHERE usuid = ?";
+            $sql = "UPDATE tm_usuario SET est = '0', fechaelim = now() WHERE usuid = ?";
             $sql = $conectar -> prepare($sql);
             $sql -> bindValue(1, $usuid);
             $sql -> execute();
@@ -97,6 +97,36 @@
             $conectar = parent::conexion();
             parent::set_names();
             $sql = "SELECT * FROM tm_usuario WHERE usuid = ?";
+            $sql = $conectar -> prepare($sql);
+            $sql -> bindValue(1, $usuid);
+            $sql -> execute();
+            return $resultado = $sql -> fetchAll();
+        }
+
+        public function get_usuario_total_id($usuid){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE usuid = ?";
+            $sql = $conectar -> prepare($sql);
+            $sql -> bindValue(1, $usuid);
+            $sql -> execute();
+            return $resultado = $sql -> fetchAll();
+        }
+
+        public function get_usuario_totalAbierto_id($usuid){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE usuid = ? AND tickest = 'Abierto'";
+            $sql = $conectar -> prepare($sql);
+            $sql -> bindValue(1, $usuid);
+            $sql -> execute();
+            return $resultado = $sql -> fetchAll();
+        }
+
+        public function get_usuario_totalCerrado_id($usuid){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE usuid = ? AND tickest = 'Cerrado'";
             $sql = $conectar -> prepare($sql);
             $sql -> bindValue(1, $usuid);
             $sql -> execute();

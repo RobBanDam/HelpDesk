@@ -162,5 +162,32 @@
             $sql->execute();
             return $resultado = $sql->fetchAll();
         }
+
+        public function get_ticket_total(){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket";
+            $sql = $conectar -> prepare($sql);
+            $sql -> execute();
+            return $resultado = $sql -> fetchAll();
+        }
+
+        public function get_ticket_totalAbierto(){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE tickest = 'Abierto'";
+            $sql = $conectar -> prepare($sql);
+            $sql -> execute();
+            return $resultado = $sql -> fetchAll();
+        }
+
+        public function get_ticket_totalCerrado(){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT COUNT(*) as TOTAL FROM tm_ticket WHERE tickest = 'Cerrado'";
+            $sql = $conectar -> prepare($sql);
+            $sql -> execute();
+            return $resultado = $sql -> fetchAll();
+        }
     }
 ?>

@@ -172,5 +172,35 @@
             $ticket->insert_ticketdetalle($_POST["tickid"], $_POST["usuid"], $_POST["tickid_desc"]);
 
         break;
+
+        case "total":
+            $datos=$ticket->get_ticket_total();
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row){
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
+
+        case "totalabierto":
+            $datos=$ticket->get_ticket_totalAbierto();
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row){
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
+
+        case "totalcerrado":
+            $datos=$ticket->get_ticket_totalCerrado();
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row){
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
     }
 ?>

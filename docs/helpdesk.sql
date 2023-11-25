@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-11-2023 a las 02:04:35
+-- Tiempo de generación: 25-11-2023 a las 06:06:02
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -126,7 +126,9 @@ CREATE TABLE `tm_usuario` (
 
 INSERT INTO `tm_usuario` (`usuid`, `usunom`, `usuape`, `usucorreo`, `usupass`, `rolid`, `fechacrea`, `fechamod`, `fechaelim`, `est`) VALUES
 (1, 'Roberto', 'Martínez', 'admin@admin.com', '123456', 1, '2023-11-16 20:40:20', '2023-11-16 20:40:20', '2023-11-16 20:40:20', 1),
-(2, 'Carlos', 'Aparicio', 'admin2@admin.com', '123456', 2, '2023-11-20 17:52:21', NULL, NULL, 1);
+(2, 'Carlos', 'Aparicio', 'admin2@admin.com', '123456', 2, '2023-11-20 17:52:21', NULL, NULL, 1),
+(3, 'test', 'test', 'test@edu.com', '123456', 2, '2023-11-24 02:36:15', NULL, '2023-11-24 18:42:09', 1),
+(4, 'test2', 'test2', 'test2@edu.com', '123456', 1, '2023-11-24 21:42:43', NULL, '2023-11-24 21:43:29', 1);
 
 --
 -- Índices para tablas volcadas
@@ -182,7 +184,7 @@ ALTER TABLE `tm_ticket`
 -- AUTO_INCREMENT de la tabla `tm_usuario`
 --
 ALTER TABLE `tm_usuario`
-  MODIFY `usuid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `usuid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
