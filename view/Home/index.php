@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
     <?php require_once("../MainHead/header.php"); ?>
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 	<title>HelpDesk</> - Home</title>
 </head>
 <body class="with-side-menu">
@@ -48,10 +49,21 @@
 					</div>
 				</div>
 			</div>
+			<section>
+				<header class="card-header"> 
+					Gráfico Estadístico
+				</header>
+				<div class="card-block">
+					<div id="myfirstchart" style="height: 250px;"></div>
+				</div>
+			</section>
 		</div>
 	</div>
 
 	<?php require_once("../MainJs/js.php"); ?>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 
 	<script src="../Home/home.js"></script>
 </body>

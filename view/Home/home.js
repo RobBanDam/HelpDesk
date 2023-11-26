@@ -7,8 +7,8 @@ $(document).ready(function(){
 
     if($('#rol_idx').val() == 1){
         $.post("../../controller/usuario.php?op=total", {usuid:usuid}, function(data){
-        data = JSON.parse(data);
-        $("#lbltotal").html(data.TOTAL);
+            data = JSON.parse(data);
+            $("#lbltotal").html(data.TOTAL);
         });
 
         $.post("../../controller/usuario.php?op=totalabierto", {usuid:usuid}, function(data){
@@ -19,6 +19,18 @@ $(document).ready(function(){
         $.post("../../controller/usuario.php?op=totalcerrado", {usuid:usuid}, function(data){
             data = JSON.parse(data);
             $("#lbltotalCerrados").html(data.TOTAL);
+        });
+
+        $.post("../../controller/usuario.php?op=grafico", {usuid:usuid}, function(data){
+            data = JSON.parse(data);
+    
+            new Morris.Bar({
+                element: 'myfirstchart',
+                data: data,
+                xkey: 'nom',
+                ykeys: ['total'],
+                labels: ['Total de Tickets']
+            });
         });
     }else{
         $.post("../../controller/ticket.php?op=total", function(data){
@@ -35,8 +47,19 @@ $(document).ready(function(){
             data = JSON.parse(data);
             $("#lbltotalCerrados").html(data.TOTAL);
         });    
-    }
+
+        $.post("../../controller/ticket.php?op=grafico", function(data){
+            data = JSON.parse(data);
     
+            new Morris.Bar({
+                element: 'myfirstchart',
+                data: data,
+                xkey: 'nom',
+                ykeys: ['total'],
+                labels: ['Total de Tickets']
+            });
+        });
+    }    
 });
 
 init();

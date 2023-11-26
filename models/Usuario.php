@@ -13,7 +13,7 @@
                     header("Location:" . conectar::ruta() . "index.php?m=2");
                     exit();
                 }else{
-                    $sql = "SELECT * FROM tm_usuario WHERE usucorreo = ? AND usupass = ? AND rolid = ? AND est = 1";
+                    $sql = "SELECT * FROM tm_usuario WHERE usucorreo = ? AND usupass = MD5(?) AND rolid = ? AND est = 1";
                     $stmt = $conectar->prepare($sql);
                     $stmt->bindValue(1, $correo);
                     $stmt->bindValue(2, $pass);
@@ -37,18 +37,26 @@
             }
         }
 
-        public function insert_usuario($usunom, $usuape, $usucorreo, $usupass, $rolid){
+        public function insert_usuario($usunom, $usuape, $usucorreo, $usupass, $rolid) {
             $conectar = parent::conexion();
             parent::set_names();
-            $sql = "INSERT INTO tm_usuario (usuid, usunom, usuape, usucorreo, usupass, rolid, fechacrea, fechamod, fechaelim, est) VALUES (NULL, ?, ?, ?, ?, ?, now(), NULL, NULL, '1');";
-            $sql = $conectar -> prepare($sql);
-            $sql -> bindValue(1, $usunom);
-            $sql -> bindValue(2, $usuape);
-            $sql -> bindValue(3, $usucorreo);
-            $sql -> bindValue(4, $usupass);
-            $sql -> bindValue(5, $rolid);
-            $sql -> execute();
-            return $resultado = $sql -> fetchAll();
+
+            // Generar el hash de la contraseña utilizando password_hash
+            //$hashedPassword = password_hash($usupass, PASSWORD_BCRYPT);
+
+            // Consulta SQL con password_hash
+            $sql = "INSERT INTO tm_usuario (usuid, usunom, usuape, usucorreo, usupass, rolid, fechacrea, fechamod, fechaelim, est) VALUES (NULL, ?, ?, ?, MD5(?), ?, NOW(), NULL, NULL, '1')";
+            
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $usunom);
+            $sql->bindValue(2, $usuape);
+            $sql->bindValue(3, $usucorreo);
+            $sql->bindValue(4, $usupass);
+            $sql->bindValue(5, $rolid);
+            
+            $sql->execute();
+            
+            return $resultado = $sql->fetchAll();
         }
 
         public function update_usuario($usuid, $usunom, $usuape, $usucorreo, $usupass, $rolid){
@@ -87,7 +95,7 @@
         public function get_usuario(){
             $conectar = parent::conexion();
             parent::set_names();
-            $sql = "SELECT * FROM tm_usuario WHERE est = '1'";
+            $sql = "call sp_l_usuario_01()";
             $sql = $conectar -> prepare($sql);
             $sql -> execute();
             return $resultado = $sql -> fetchAll();
@@ -96,7 +104,7 @@
         public function get_usuario_id($usuid){
             $conectar = parent::conexion();
             parent::set_names();
-            $sql = "SELECT * FROM tm_usuario WHERE usuid = ?";
+            $sql = "call sp_l_usuario_02(?)";
             $sql = $conectar -> prepare($sql);
             $sql -> bindValue(1, $usuid);
             $sql -> execute();
@@ -131,6 +139,16 @@
             $sql -> bindValue(1, $usuid);
             $sql -> execute();
             return $resultado = $sql -> fetchAll();
+        }
+
+        public function get_usuario_grafico($usuid){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "SELECT tm_categoria.catnom AS nom, COUNT(*) as total FROM tm_ticket JOIN tm_categoria on tm_ticket.catid = tm_categoria.catid WHERE tm_ticket.est = 1 AND tm_ticket.usuid = ? GROUP BY tm_categoria.catnom ORDER BY total DESC";
+            $sql = $conectar -> prepare($sql);
+            $sql -> bindValue(1, $usuid);
+            $sql -> execute();
+            return $resultado = $sql -> fetchAll(); 
         }
     }
 ?>
