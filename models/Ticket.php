@@ -167,6 +167,23 @@
             return $resultado = $sql->fetchAll();
         }
 
+        public function update_ticket_asignacion($usu_asig, $tickid){
+            $conectar = parent::Conexion();
+            parent::set_names();
+            $sql = "UPDATE 
+                tm_ticket
+            SET
+                usu_asig = ?,
+                fech_asig = now()
+            WHERE
+                tickid = ?";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $usu_asig);
+            $sql->bindValue(2, $tickid);
+            $sql->execute();
+            return $resultado = $sql->fetchAll();
+        }
+
         public function get_ticket_total(){
             $conectar = parent::conexion();
             parent::set_names();

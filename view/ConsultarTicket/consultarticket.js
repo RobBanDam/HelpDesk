@@ -3,7 +3,9 @@ let usuid = $('#user_idx').val();
 let rolid = $('#rol_idx').val();
 
 function init(){
-
+    $("#ticket_form").on("submit", function(e){
+        guardar(e);
+    });
 }
 
 $(document).ready(function(){
@@ -126,7 +128,29 @@ function ver(tickid){
 }
 
 function asignar(tickid){
-    $("#modalasignar").modal('show');
+    $.post("../../controller/ticket.php?op=mostrar", {tickid:tickid}, function(data){
+        data = JSON.parse(data);
+        $('#tickid').val(data.tickid);
+        $('#mdltitulo').html('Asignar Agente');
+        $("#modalasignar").modal('show');
+    });
+}
+
+function guardar(e){
+    e.preventDefault();
+    let formData = new FormData($("#ticket_form")[0]);
+    $.ajax({
+        url: "../../controller/ticket.php?op=asignar",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(datos){
+            /* console.log(datos); */
+            $('#modalasignar').modal('hide');
+            $('#ticket_data').DataTable().ajax.reload();
+        }
+    });
 }
 
 init();

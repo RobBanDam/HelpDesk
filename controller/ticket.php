@@ -25,6 +25,15 @@
 
         break;
 
+        case "asignar":
+            // Aplica htmlspecialchars al campo tickdesc
+            /* $tickdesc = htmlspecialchars($_POST["tickdesc"]); */
+            
+            // Llama a la función insert_ticket con el campo tickdesc modificado
+            $ticket->update_ticket_asignacion($_POST["usu_asig"], $_POST["tickid"]);
+
+        break;
+
         case "listar_x_usu":
             $datos = $ticket->listar_ticket_x_usu($_POST["usuid"]);
             $data = array();
