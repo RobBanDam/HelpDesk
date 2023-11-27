@@ -39,6 +39,12 @@
 
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fechcrea"]));
 
+                if ($row["fech_asig"] == NULL) {
+                    $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                } else {
+                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
+                }
+
                 // Aplica html_entity_decode al campo tickdesc
                 /* $sub_array[] = html_entity_decode($row["tickdesc"]); */
 
@@ -71,6 +77,12 @@
                 }
 
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fechcrea"]));
+
+                if ($row["fech_asig"] == NULL) {
+                    $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
+                } else {
+                    $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
+                }
 
                 // Aplica html_entity_decode al campo tickdesc
                 /* $sub_array[] = html_entity_decode($row["tickdesc"]); */

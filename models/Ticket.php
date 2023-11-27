@@ -4,7 +4,7 @@
             $conectar = parent::Conexion();
             parent::set_names();
 
-            $sql = "INSERT INTO tm_ticket (tickid, usuid, catid, ticktitulo, tickdesc, tickest, fechcrea, est) VALUES (NULL, ?, ?, ?, ?, 'Abierto', now(), '1');";
+            $sql = "INSERT INTO tm_ticket (tickid, usuid, catid, ticktitulo, tickdesc, tickest, fechcrea, usu_asig, fech_asig est) VALUES (NULL, ?, ?, ?, ?, 'Abierto', now(), NULL, NULL, '1');";
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $usuid);
             $sql->bindValue(2, $catid);
@@ -26,6 +26,8 @@
                 tm_ticket.tickdesc,
                 tm_ticket.tickest,
                 tm_ticket.fechcrea,
+                tm_ticket.usu_asig,
+                tm_ticket.fech_asig,
                 tm_usuario.usunom,
                 tm_usuario.usuape,
                 tm_categoria.catnom
@@ -56,6 +58,8 @@
                 tm_ticket.tickdesc,
                 tm_ticket.tickest,
                 tm_ticket.fechcrea,
+                tm_ticket.usu_asig,
+                tm_ticket.fech_asig,
                 tm_usuario.usunom,
                 tm_usuario.usuape,
                 tm_categoria.catnom
