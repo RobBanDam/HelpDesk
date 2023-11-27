@@ -7,8 +7,6 @@ $(document).ready(function(){
 
     listardetalle(tickid);
 
-    
-
     $('#tickid_desc').summernote({
         height: 250,
         lang: "es-ES",
@@ -25,17 +23,25 @@ $(document).ready(function(){
             onPaste: function(e){
                 console.log("Text detect...");
             }
-        }
+        },
+        toolbar: [
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+          ]
     });
 
     $('#tickid_descusu').summernote({
         height: 250,
         lang: "es-ES",
-        popover: {
+        /* popover: {
             image: [],
             link: [],
             air: []
-        },
+        }, */
         /* callbacks: {
             onImageUpload: function(image){
                 console.log("Image detect...");
@@ -45,6 +51,15 @@ $(document).ready(function(){
                 console.log("Text detect...");
             }
         } */
+        toolbar: [
+            // [groupName, [list of button]]
+            ['style', ['bold', 'italic', 'underline', 'clear']],
+            ['font', ['strikethrough', 'superscript', 'subscript']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['height', ['height']]
+          ]
     });
     $('#tickid_descusu').summernote('disable');
 });
