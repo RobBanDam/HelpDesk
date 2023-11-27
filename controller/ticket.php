@@ -97,7 +97,7 @@
                 }
 
                 if ($row["usu_asig"] == NULL) {
-                    $sub_array[] = '<span class="label label-pill label-warning">Sin Asignar</span>';
+                    $sub_array[] = '<a onClick="asignar('.$row["tickid"].');"><span class="label label-pill label-warning">Sin Asignar</span></a>';
                 }else{
                     $datos1 = $usuario -> get_usuario_id($row["usu_asig"]);
                     foreach ($datos1 as $row1){

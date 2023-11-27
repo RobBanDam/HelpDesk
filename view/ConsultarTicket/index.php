@@ -55,6 +55,8 @@
 	</div>
 	<!-- Contenido -->
 
+	<?php require_once("../../view/ConsultarTicket/modalAsignar.php"); ?>
+
 	<?php require_once("../MainJs/js.php"); ?>
 
 	<script src="../ConsultarTicket/consultarticket.js"></script>

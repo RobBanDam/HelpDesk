@@ -7,6 +7,10 @@ function init(){
 }
 
 $(document).ready(function(){
+    $.post("../../controller/usuario.php?op=combo", function(data){
+        $('#usu_asig').html(data);
+    });
+
     if(rolid == 1){
         tabla=$('#ticket_data').dataTable({
             "aProcessing": true,
@@ -119,6 +123,10 @@ $(document).ready(function(){
 
 function ver(tickid){
     window.open('http://localhost/HelpDesk/view/DetalleTicket/?ID='+ tickid +'');
+}
+
+function asignar(tickid){
+    $("#modalasignar").modal('show');
 }
 
 init();
