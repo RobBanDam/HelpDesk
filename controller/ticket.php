@@ -3,6 +3,9 @@
     require_once("../models/Ticket.php");
     $ticket = new Ticket();
 
+    require_once("../models/Usuario.php");
+    $usuario = new Usuario();
+
     switch ($_GET["op"]) {
         case "insert":
             // Aplica htmlspecialchars al campo tickdesc
@@ -45,6 +48,15 @@
                     $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
                 }
 
+                if ($row["usu_asig"] == NULL) {
+                    $sub_array[] = '<span class="label label-pill label-warning">Sin Asignar</span>';
+                }else{
+                    $datos1 = $usuario -> get_usuario_id($row["usu_asig"]);
+                    foreach ($datos1 as $row1){
+                        $sub_array[] = '<span class="label label-pill label-success">'.$row1["usunom"].'</span>';
+                    }
+                }
+
                 // Aplica html_entity_decode al campo tickdesc
                 /* $sub_array[] = html_entity_decode($row["tickdesc"]); */
 
@@ -82,6 +94,15 @@
                     $sub_array[] = '<span class="label label-pill label-default">Sin Asignar</span>';
                 } else {
                     $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fech_asig"]));
+                }
+
+                if ($row["usu_asig"] == NULL) {
+                    $sub_array[] = '<span class="label label-pill label-warning">Sin Asignar</span>';
+                }else{
+                    $datos1 = $usuario -> get_usuario_id($row["usu_asig"]);
+                    foreach ($datos1 as $row1){
+                        $sub_array[] = '<span class="label label-pill label-success">'.$row1["usunom"].'</span>';
+                    }
                 }
 
                 // Aplica html_entity_decode al campo tickdesc
