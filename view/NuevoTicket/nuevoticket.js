@@ -51,6 +51,7 @@ function guardaryeditar(e){
             contentType: false,
             processData: false,
             success: function(datos){
+                console.log(datos);
                 $('#ticktitulo').val('');
                 $('#tickdesc').summernote('reset');
                 swal("¡Correcto!", "Registrado Correctamente", "success");

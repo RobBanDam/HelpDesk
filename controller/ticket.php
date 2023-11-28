@@ -12,7 +12,13 @@
             /* $tickdesc = htmlspecialchars($_POST["tickdesc"]); */
             
             // Llama a la función insert_ticket con el campo tickdesc modificado
-            $ticket->insert_ticket($_POST["usuid"], $_POST["catid"], $_POST["ticktitulo"], $_POST["tickdesc"]);
+            $datos = $ticket->insert_ticket($_POST["usuid"], $_POST["catid"], $_POST["ticktitulo"], $_POST["tickdesc"]);
+            if(is_array($datos) == true and count($datos) > 0){
+                foreach ($datos as $row){
+                    $output["tickid"] = $row["tickid"];                    
+                }
+            }
+            echo json_encode($datos);
         break;
 
         case "update":
