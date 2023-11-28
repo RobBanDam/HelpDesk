@@ -41,6 +41,12 @@
 
 						<input type="hidden" id="usuid" name="usuid" value="<?php echo $_SESSION["usuid"]?>">
 
+						<div class="col-lg-12">
+							<fieldset class="form-group">
+								<label class="form-label semibold" for="ticktitulo">Título</label>
+								<input type="text" class="form-control" id="ticktitulo" name="ticktitulo" placeholder="Ingresa el título">
+							</fieldset>
+						</div>
 						<div class="col-lg-6">
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="catid">Categoría</label>
@@ -48,12 +54,14 @@
 								</select>
 							</fieldset>
 						</div>
+
 						<div class="col-lg-6">
 							<fieldset class="form-group">
-								<label class="form-label semibold" for="ticktitulo">Título</label>
-								<input type="text" class="form-control" id="ticktitulo" name="ticktitulo" placeholder="Ingresa el título">
+								<label class="form-label semibold" for="exampleInput">Documentos Adicionales</label>
+								<input type="file" name="fileElem" id="fileElem" class="form-control" multiple>
 							</fieldset>
 						</div>
+						
 						<div class="col-lg-12">
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="tickdesc">Descripción</label>
