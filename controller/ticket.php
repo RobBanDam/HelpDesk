@@ -6,6 +6,9 @@
     require_once("../models/Usuario.php");
     $usuario = new Usuario();
 
+    require_once("../models/Documento.php");
+    $documento = new Documento();
+
     switch ($_GET["op"]) {
         case "insert":
             // Aplica htmlspecialchars al campo tickdesc
@@ -15,7 +18,26 @@
             $datos = $ticket->insert_ticket($_POST["usuid"], $_POST["catid"], $_POST["ticktitulo"], $_POST["tickdesc"]);
             if(is_array($datos) == true and count($datos) > 0){
                 foreach ($datos as $row){
-                    $output["tickid"] = $row["tickid"];                    
+                    $output["tickid"] = $row["tickid"];    
+                    
+                    if($_FILES['files']['name']==0){
+
+                    }else{
+                        $countfiles = count($_FILES['files']['name']);
+                        $ruta = "../public/document/".$output["tickid"]."/";
+                        $files_arr = array();
+
+                        if(!file_exists($ruta)){
+                            mkdir($ruta, 0755, true);
+                        }
+                        for($index=0; $index<$countfiles; $index++){
+                            $doc1 = $_FILES['files']['name'][$index];
+                            $destino = $ruta.$doc1;
+
+                            $documento->insert_documento($output["tickid"], $doc1);
+                            move_uploaded_file($doc1, $destino);
+                        }
+                    }
                 }
             }
             echo json_encode($datos);
