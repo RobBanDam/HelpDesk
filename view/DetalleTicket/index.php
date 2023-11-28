@@ -51,6 +51,22 @@
                         </div>
                         <div class="col-lg-12">
                             <fieldset class="form-group">
+                                <label class="form-label semibold" for="ticktitulo">Documentos Adicionales</label>
+                                <table id="documentos_data" class="table table-bordered table-striped table-vcenter js-dataTable-full">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 90%;">Nombre</th>
+                                            <th class="text-center" style="width: 10%;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+                            </fieldset>
+                        </div>
+                        <div class="col-lg-12">
+                            <fieldset class="form-group">
                                 <label class="form-label semibold" for="tickid_descusu">Descripción</label>
                                 <div class="summernote-theme-1">
                                     <textarea id="tickid_descusu" class="summernote" name="tickid_descusu"></textarea>

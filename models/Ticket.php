@@ -4,7 +4,7 @@
             $conectar = parent::Conexion();
             parent::set_names();
 
-            $sql = "INSERT INTO tm_ticket (tickid, usuid, catid, ticktitulo, tickdesc, tickest, fechcrea, usu_asig, fech_asig est) VALUES (NULL, ?, ?, ?, ?, 'Abierto', now(), NULL, NULL, '1');";
+            $sql = "INSERT INTO tm_ticket (tickid, usuid, catid, ticktitulo, tickdesc, tickest, fechcrea, usu_asig, fech_asig, est) VALUES (NULL, ?, ?, ?, ?, 'Abierto', now(), NULL, NULL, '1');";
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $usuid);
             $sql->bindValue(2, $catid);
@@ -12,10 +12,10 @@
             $sql->bindValue(4, $tickdesc);
             $sql->execute();
 
-            $sql1 = "SELECT last_insert_id() as 'tickid';";
-            $sql1 = $conectar->prepare($sql1);
+            $sql1="select last_insert_id() as 'tickid';";
+            $sql1=$conectar->prepare($sql1);
             $sql1->execute();
-            return $resultado = $sql1->fetchAll(PDO::FETCH_ASSOC);
+            return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
         }
 
         public function listar_ticket_x_usu($usuid){
