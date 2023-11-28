@@ -44,6 +44,10 @@ function guardaryeditar(e){
     if($('#tickdesc').summernote('isEmpty') || $('#ticktitulo').val() == ''){
         swal("Advertencia", "Faltan llenar los campos", "warning");
     }else{
+        let totalfiles = $('#fileElem').val().length;
+        for (let i = 0; i < totalfiles; i++){
+            formData.append("files[]", $('#fileElem')[0].files[i]);
+        }
         $.ajax({
             url: "../../controller/ticket.php?op=insert",
             type: "POST",

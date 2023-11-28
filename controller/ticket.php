@@ -31,10 +31,10 @@
                             mkdir($ruta, 0755, true);
                         }
                         for($index=0; $index<$countfiles; $index++){
-                            $doc1 = $_FILES['files']['name'][$index];
-                            $destino = $ruta.$doc1;
+                            $doc1 = $_FILES['files']['tmp_name'][$index];
+                            $destino = $ruta.$_FILES['files']['name'][$index];
 
-                            $documento->insert_documento($output["tickid"], $doc1);
+                            $documento->insert_documento($output["tickid"], $_FILES['files']['name'][$index]);
                             move_uploaded_file($doc1, $destino);
                         }
                     }
