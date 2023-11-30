@@ -118,6 +118,7 @@
                 tm_ticket.fechcrea,
                 tm_usuario.usunom,
                 tm_usuario.usuape,
+                tm_usuario.usucorreo,
                 tm_categoria.catnom
                 FROM 
                 tm_ticket

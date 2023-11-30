@@ -107,5 +107,9 @@
                 echo $html;
             }
         break;
+
+        case "password":
+            $usuario -> update_usuario_pass($_POST["usuid"], $_POST["usupass"]);
+        break;
     }
 ?>

@@ -169,6 +169,10 @@ $(document).on("click", "#btncerrar", function(){
                 
             });
 
+            $.post("../../controller/email.php?op=ticket_cerrado", {tickid : tickid}, function(data){
+
+            });
+
             listardetalle(tickid);
 
             swal({

@@ -159,5 +159,20 @@
             $sql -> execute();
             return $resultado = $sql -> fetchAll(); 
         }
+
+        public function update_usuario_pass($usuid, $usupass){
+            $conectar = parent::conexion();
+            parent::set_names();
+            $sql = "UPDATE tm_usuario
+                SET
+                    usupass = MD5(?)
+                WHERE
+                    usuid = ?";
+            $sql = $conectar -> prepare($sql);
+            $sql -> bindValue(1, $usupass);
+            $sql -> bindValue(2, $usuid);
+            $sql -> execute();
+            return $resultado = $sql -> fetchAll();
+        }
     }
 ?>

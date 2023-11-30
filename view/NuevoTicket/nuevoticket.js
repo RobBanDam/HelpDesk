@@ -54,8 +54,15 @@ function guardaryeditar(e){
             data: formData,
             contentType: false,
             processData: false,
-            success: function(datos){
-                console.log(datos);
+            success: function(data){
+                data = JSON.parse(data);
+                console.log(data[0].tickid);
+
+                $.post("../../controller/email.php?op=ticket_abierto", {tickid : data[0].tickid}, function(data){
+
+                });
+
+
                 $('#ticktitulo').val('');
                 $('#tickdesc').summernote('reset');
                 swal("¡Correcto!", "Registrado Correctamente", "success");
