@@ -47,15 +47,22 @@
 								<input type="text" class="form-control" id="ticktitulo" name="ticktitulo" placeholder="Ingresa el título">
 							</fieldset>
 						</div>
-						<div class="col-lg-6">
+						<div class="col-lg-4">
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="catid">Categoría</label>
 								<select id="catid" name="catid" class="form-control">
 								</select>
 							</fieldset>
 						</div>
+						<div class="col-lg-4">
+							<fieldset class="form-group">
+								<label class="form-label semibold" for="catid">SubCategoría</label>
+								<select id="cats_id" name="cats_id" class="form-control">
+								</select>
+							</fieldset>
+						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-4">
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="exampleInput">Documentos Adicionales</label>
 								<input type="file" name="fileElem" id="fileElem" class="form-control" multiple>

@@ -1,15 +1,15 @@
 <?php 
     require_once("../config/conexion.php");
-    require_once("../models/Categoria.php");
-    $categoria = new Categoria();
+    require_once("../models/Subcategoria.php");
+    $subcategoria = new Subcategoria();
 
     switch($_GET["op"]){
         case "combo":
-            $datos = $categoria->get_categoria();
+            $datos = $subcategoria->get_subcategoria($_POST["cat_id"]);
             $html = "";
             if(is_array($datos) === true and count($datos) > 0){
                 foreach($datos as $row){
-                    $html .= "<option value='".$row['catid']."'>".$row['catnom']."</option>";
+                    $html .= "<option value='".$row['cats_id']."'>".$row['cats_nom']."</option>";
                 }
                 echo $html;
             }
