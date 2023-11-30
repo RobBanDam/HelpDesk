@@ -159,4 +159,32 @@ function guardar(e){
     });
 }
 
+function CambiarEstado(tickid){
+    swal({
+        title: "HelpDesk",
+        text: "¿Está seguro de Abrir nuevamente el ticket?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-warning",
+        confirmButtonText: "Confirmo",
+        cancelButtonText: "Cancelar",
+        closeOnConfirm: false
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+            $.post("../../controller/ticket.php?op=reabrir", {tickid : tickid, usuid : usuid}, function(data){  
+            });
+
+			$('#ticket_data').DataTable().ajax.reload();
+
+            swal({
+                title: "Cerrado",
+                text: "Ticket Abierto",
+                type: "success",
+                confirmButtonClass: "btn-success"
+            });
+        }
+    });
+}
+
 init();

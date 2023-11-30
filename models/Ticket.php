@@ -149,7 +149,7 @@
         public function insert_ticketdetalle_cerrar($tickid, $usuid){
             $conectar = parent::Conexion();
             parent::set_names();
-            $sql = "call sp_i_ticketdetalle(?)";
+            $sql = "call sp_i_ticketdetalle(?,?)";
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $tickid);
             $sql->bindValue(2, $usuid);
@@ -224,5 +224,36 @@
             $sql -> execute();
             return $resultado = $sql -> fetchAll(); 
         }
+
+        public function reabrir_ticket($tickid){
+            $conectar = parent::Conexion();
+            parent::set_names();
+            $sql = "UPDATE 
+                tm_ticket
+            SET
+                tickest = 'Abierto'
+            WHERE
+                tickid = ?;";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $tickid);
+            $sql->execute();
+            return $resultado = $sql->fetchAll();
+        }
+
+        public function insert_ticketdetalle_reabrir($tickid, $usuid){
+            $conectar = parent::Conexion();
+            parent::set_names();
+            $sql = "INSERT INTO 
+                        td_ticketdetalle 
+                            (tickid_id, tickid, usuid, tickid_desc, fechcrea, est) 
+                    VALUES 
+                            (NULL, ?, ?, 'Ticket Re-abierto...', now(), '1');";
+            $sql = $conectar->prepare($sql);
+            $sql->bindValue(1, $tickid);
+            $sql->bindValue(2, $usuid);
+            $sql->execute();
+            return $resultado = $sql->fetchAll();
+        }
+
     }
 ?>

@@ -43,13 +43,13 @@
         break;
 
         case "update":
-            // Aplica htmlspecialchars al campo tickdesc
-            /* $tickdesc = htmlspecialchars($_POST["tickdesc"]); */
-            
-            // Llama a la función insert_ticket con el campo tickdesc modificado
             $ticket->update_ticket($_POST["tickid"]);
             $ticket->insert_ticketdetalle_cerrar($_POST["tickid"], $_POST["usuid"]);
+        break;
 
+        case "reabrir":
+            $ticket->reabrir_ticket($_POST["tickid"]);
+            $ticket->insert_ticketdetalle_reabrir($_POST["tickid"], $_POST["usuid"]);
         break;
 
         case "asignar":
@@ -73,7 +73,7 @@
                 if ($row["tickest"] == "Abierto") {
                     $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
                 } else {
-                    $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
+                    $sub_array[] = '<a onClick="CambiarEstado('.$row["tickid"].')"><span class="label label-pill label-danger">Cerrado</span></a>';
                 }
 
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fechcrea"]));
@@ -121,7 +121,7 @@
                 if ($row["tickest"] == "Abierto") {
                     $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
                 } else {
-                    $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
+                    $sub_array[] = '<a onClick="CambiarEstado('.$row["tickid"].')"><span class="label label-pill label-danger">Cerrado</span></a>';
                 }
 
                 $sub_array[] = date("d/m/Y H:i:s", strtotime($row["fechcrea"]));
