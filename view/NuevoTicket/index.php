@@ -50,14 +50,15 @@
 						<div class="col-lg-4">
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="catid">Categoría</label>
-								<select id="catid" name="catid" class="form-control">
+								<select id="catid" name="catid" class="form-control" data-placeholder="Seleccionar">
 								</select>
 							</fieldset>
 						</div>
 						<div class="col-lg-4">
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="catid">SubCategoría</label>
-								<select id="cats_id" name="cats_id" class="form-control">
+								<select id="cats_id" name="cats_id" class="form-control" data-placeholder="Seleccionar">
+									<option label="Seleccionar"></option>
 								</select>
 							</fieldset>
 						</div>

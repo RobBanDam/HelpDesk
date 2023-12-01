@@ -35,13 +35,22 @@ $(document).ready(function() {
     $.post("../../controller/categoria.php?op=combo", function(data, status){
         $('#catid').html(data);
     });
+
+    $('#catid').change(function(){
+        catid = $(this).val();
+        console.log(catid);
+
+        $.post("../../controller/subcategoria.php?op=combo", {catid:catid}, function(data, status){
+            $('#cats_id').html(data);
+        })
+    });
 });
 
 function guardaryeditar(e){
     e.preventDefault();
     let formData = new FormData($("#ticket_form")[0]);
 
-    if($('#tickdesc').summernote('isEmpty') || $('#ticktitulo').val() == ''){
+    if($('#tickdesc').summernote('isEmpty') || $('#ticktitulo').val() == '' || $('#cats_id').val() == ''){
         swal("Advertencia", "Faltan llenar los campos", "warning");
     }else{
         let totalfiles = $('#fileElem').val().length;

@@ -1,15 +1,16 @@
 <?php
     class Ticket extends Conectar{
-        public function insert_ticket($usuid, $catid, $ticktitulo, $tickdesc){
+        public function insert_ticket($usuid, $catid, $cats_id, $ticktitulo, $tickdesc){
             $conectar = parent::Conexion();
             parent::set_names();
 
-            $sql = "INSERT INTO tm_ticket (tickid, usuid, catid, ticktitulo, tickdesc, tickest, fechcrea, usu_asig, fech_asig, est) VALUES (NULL, ?, ?, ?, ?, 'Abierto', now(), NULL, NULL, '1');";
+            $sql = "INSERT INTO tm_ticket (tickid, usuid, catid, cats_id, ticktitulo, tickdesc, tickest, fechcrea, usu_asig, fech_asig, est) VALUES (NULL, ?, ?, ?, ?, ?, 'Abierto', now(), NULL, NULL, '1');";
             $sql = $conectar->prepare($sql);
             $sql->bindValue(1, $usuid);
             $sql->bindValue(2, $catid);
-            $sql->bindValue(3, $ticktitulo);
-            $sql->bindValue(4, $tickdesc);
+            $sql->bindValue(3, $cats_id);
+            $sql->bindValue(4, $ticktitulo);
+            $sql->bindValue(5, $tickdesc);
             $sql->execute();
 
             $sql1="select last_insert_id() as 'tickid';";

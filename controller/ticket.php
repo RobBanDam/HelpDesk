@@ -12,7 +12,7 @@
     switch ($_GET["op"]) {
 
         case "insert":
-            $datos=$ticket->insert_ticket($_POST["usuid"],$_POST["catid"],$_POST["ticktitulo"],$_POST["tickdesc"]);
+            $datos=$ticket->insert_ticket($_POST["usuid"],$_POST["catid"],$_POST["cats_id"],$_POST["ticktitulo"],$_POST["tickdesc"]);
             if (is_array($datos)==true and count($datos)>0){
                 foreach ($datos as $row){
                     $output["tickid"] = $row["tickid"];

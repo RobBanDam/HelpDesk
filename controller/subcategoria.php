@@ -5,7 +5,7 @@
 
     switch($_GET["op"]){
         case "combo":
-            $datos = $subcategoria->get_subcategoria($_POST["cat_id"]);
+            $datos = $subcategoria->get_subcategoria($_POST["catid"]);
             $html = "";
             if(is_array($datos) === true and count($datos) > 0){
                 foreach($datos as $row){
