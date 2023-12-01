@@ -113,6 +113,7 @@
                 tm_ticket.tickid,
                 tm_ticket.usuid,
                 tm_ticket.catid,
+                tm_ticket.cats_id,
                 tm_ticket.ticktitulo,
                 tm_ticket.tickdesc,
                 tm_ticket.tickest,
@@ -120,10 +121,12 @@
                 tm_usuario.usunom,
                 tm_usuario.usuape,
                 tm_usuario.usucorreo,
-                tm_categoria.catnom
+                tm_categoria.catnom,
+                tm_subcategoria.cats_nom
                 FROM 
                 tm_ticket
                 INNER join tm_categoria on tm_ticket.catid = tm_categoria.catid
+                INNER join tm_subcategoria on tm_ticket.cats_id = tm_subcategoria.cats_id
                 INNER join tm_usuario on tm_ticket.usuid = tm_usuario.usuid
                 WHERE
                 tm_ticket.est = 1

@@ -228,6 +228,7 @@
                     $output["usunom"] = $row["usunom"];
                     $output["usuape"] = $row["usuape"];
                     $output["catnom"] = $row["catnom"];
+                    $output["cats_nom"] = $row["cats_nom"];
                 }
                 echo json_encode($output);
             }

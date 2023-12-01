@@ -198,6 +198,7 @@ function listardetalle(tickid){
             $('#lblnomidtick').html("Detalle Ticket # " + data.tickid);
 
             $('#catnom').val(data.catnom);
+            $('#cats_nom').val(data.cats_nom);
             $('#ticktitulo').val(data.ticktitulo);
 
             $('#tickid_descusu').summernote('code', data.tickdesc);
